@@ -21,60 +21,62 @@ public class DNAService {
         return checkDNA(adn); 
     }
     
-    static boolean checkDNA(String[][] adn){
-        int mutant =0, cadenaR=1, cadenaC=1;
-        //Buscar cadena por filas
+    private static boolean checkDNA(String[][] adn){
+        
+        int mutant =0, cadenaD=1, cadena=1;
+        String aux=" ";
+        
         for (int i = 0; i < adn.length; i++) {
+            //Buscar cadena por filas
             for (int j = 0; j < adn[i].length-1; j++) {
                 if (adn[i][j].equals(adn[i][j+1]) ) {
-                    cadenaR++;
-                    if (cadenaR == 4) {
+                    cadena++;
+                    if (cadena == 4) {
                         mutant++;
+                        if (mutant == 2) return true;
                     }
                 }else{
-                    cadenaR=1;
+                    cadena=1;
                 }
-                
-            }
+            } 
+            cadena=1;  
             
-            cadenaR=1;
-            
-            if (mutant >= 2) {
-                System.out.println("Es Mutante");
-                return true;
-            }
-        }
-        
-        //Buscar cadena por Columnas
-        for (int j = 0; j < adn.length; j++) {
-            for (int i = 0; i < adn[i].length-1; i++) {
-                if (adn[i][j].equals(adn[i+1][j]) ) {
-                    cadenaC++;
-                    if (cadenaC == 4) {
+            //Buscar cadena por Columnas
+            for (int j = 0; j < adn[j].length-1; j++) {
+                if (adn[j][i].equals(adn[j+1][i]) ) {
+                    cadena++;
+                    if (cadena == 4) {
                         mutant++;
+                        if (mutant == 2) return true;
                     }
                 }else{
-                    cadenaC=1;
-                }                   
-                
+                    cadena=1;
+                }                  
             }
+            cadena=1;
             
-            cadenaC=1;
             
-            if (mutant >= 2) {
-                System.out.println("Es Mutante");
-                return true;
+//            Buscar diagonales derecha
+            for (int j = 0; j < adn.length; j++) {
+                if (i < adn.length-1 && j< adn[i].length-1 && adn[i][j].equals(adn[i+1][j+1])) {
+                    cadenaD++;
+                    if (cadenaD == 4) {
+                        mutant++;
+                        if (mutant == 2) return true;
+                    }
+                }
             }
+//              Diagonal inversa
+//            for (int j = 0; j < adn.length; j++) {
+//                if ((i+j) == adn.length-1 && j> 0 && adn[i][j].equals(adn[i+1][j-1])) {
+//                    
+//                    System.out.println("i: " + i +" " + "j: " + j +" ");
+//                    System.out.println("Entra a la diago ");
+//                }
+//                
+//            }
             
-           
-        }
-        
-        //Imprimir matriz
-        for (int i = 0; i < adn.length; i++) {
-            for (int j = 0; j < adn[i].length; j++) {
-                System.out.print(adn[i][j] + " ");                
-            }
-            System.out.println("");
+            
         }
         return false;
     }
