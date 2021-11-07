@@ -34,18 +34,6 @@ public class DNAService {
         return checkDNA(adn); 
     }
     
-    static boolean noContainChar(String[] aux){
-       for (int j = 0; j < aux.length; j++) {
-                if (aux[j].equals("A") || 
-                    aux[j].equals("T") ||
-                    aux[j].equals("G") ||
-                    aux[j].equals("C")) {
-                    return false;
-                }
-                return true;
-        }
-       return true;
-    }
     
     private static boolean checkDNA(String[][] adn){
         int mutant =0, cadenaD=1, cadenaDI=1,cadena=1;
