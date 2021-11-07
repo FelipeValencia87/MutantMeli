@@ -3,13 +3,14 @@ package com.meli.demo.service;
 public class DNAService {
     
     public static boolean isMutant(String[] dna){
-        int n = dna.length, m =  dna[0].length();
-        
         String letters;
-        String[][] adn = new String[n][m];        
-        String[] aux ;
+        String[][] adn = new String[dna.length][dna.length];        
+        String[] aux;
         
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < adn.length; i++) {
+            if (dna[i].length() != dna.length ) { //Se valida que las posiciones tengan el mismo número de caracteres
+               return false;
+            }
             letters = dna[i];//Se extrae el string en cada una de las posiciones
             letters=letters.toUpperCase();
             aux = letters.split("");//Se separan las letras del string y se ingresan a un array 
@@ -68,7 +69,7 @@ public class DNAService {
             cadena=1;
             
             
-//            Buscar diagonales
+//            Buscar por diagonales
             for (int j = 0; j < adn.length; j++) {
                 if (i < adn.length-1 && j < adn[i].length-1 && adn[i][j].equals(adn[i+1][j+1])) {
                     cadenaD++;
@@ -80,7 +81,7 @@ public class DNAService {
                     cadenaD=1;
                 }
             }
-            //Diagonal inversa
+            //Bscar por Diagonales inversas
             for (int j = 0; j < adn.length; j++) {
                 if (i < adn.length-1 && j > 0 && adn[i][j].equals(adn[i+1][j-1])) {
                     cadenaDI++;
