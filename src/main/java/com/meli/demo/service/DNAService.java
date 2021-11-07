@@ -5,13 +5,19 @@ public class DNAService {
     public static boolean isMutant(String[] dna){
         int n = dna.length, m =  dna[0].length();
         
-        String letras;
+        String letters;
         String[][] adn = new String[n][m];        
         String[] aux ;
         
         for (int i = 0; i < n; i++) {
-            letras = dna[i];//Se extrae el string en cada una de las posiciones
-            aux = letras.split("");//Se separan las letras del string y se ingresan a un array 
+            letters = dna[i];//Se extrae el string en cada una de las posiciones
+            letters=letters.toUpperCase();
+            aux = letters.split("");//Se separan las letras del string y se ingresan a un array 
+            
+            if (noContainChar(aux)) { // Validando si las letras contenidas son las aceptadas
+                return false;
+            }
+            
             for (int j = 0; j < aux.length; j++) { //Ingresando cada una de las letras en la posición
                adn[i][j]= aux[j];                
             }            
@@ -21,10 +27,21 @@ public class DNAService {
         return checkDNA(adn); 
     }
     
+    static boolean noContainChar(String[] aux){
+       for (int j = 0; j < aux.length; j++) {
+                if (aux[j].equals("A") || 
+                    aux[j].equals("T") ||
+                    aux[j].equals("G") ||
+                    aux[j].equals("C")) {
+                    return false;
+                }
+                return true;
+        }
+       return true;
+    }
+    
     private static boolean checkDNA(String[][] adn){
-        
-        int mutant =0, cadenaD=1, cadena=1;
-        String aux=" ";
+        int mutant =0, cadenaD=1, cadenaDI=1,cadena=1;
         
         for (int i = 0; i < adn.length; i++) {
             //Buscar cadena por filas
@@ -56,26 +73,31 @@ public class DNAService {
             cadena=1;
             
             
-//            Buscar diagonales derecha
+//            Buscar diagonales
             for (int j = 0; j < adn.length; j++) {
-                if (i < adn.length-1 && j< adn[i].length-1 && adn[i][j].equals(adn[i+1][j+1])) {
+                if (i < adn.length-1 && j < adn[i].length-1 && adn[i][j].equals(adn[i+1][j+1])) {
                     cadenaD++;
                     if (cadenaD == 4) {
                         mutant++;
                         if (mutant == 2) return true;
                     }
+                }else{
+                    cadenaD=1;
                 }
             }
-//              Diagonal inversa
-//            for (int j = 0; j < adn.length; j++) {
-//                if ((i+j) == adn.length-1 && j> 0 && adn[i][j].equals(adn[i+1][j-1])) {
-//                    
-//                    System.out.println("i: " + i +" " + "j: " + j +" ");
-//                    System.out.println("Entra a la diago ");
-//                }
-//                
-//            }
-            
+            //Diagonal inversa
+            for (int j = 0; j < adn.length; j++) {
+                if (i < adn.length-1 && j > 0 && adn[i][j].equals(adn[i+1][j-1])) {
+                    cadenaDI++;
+                    if (cadenaDI == 4) {
+                        mutant++;
+                        if (mutant == 2) return true;
+                    }
+                }else{
+                    cadenaDI=1;
+                }
+                
+            }
             
         }
         return false;
