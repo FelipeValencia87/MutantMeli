@@ -3,12 +3,13 @@ package com.meli.demo.service;
 public class DNAService {
     
     public static boolean isMutant(String[] dna){
+        int n = dna.length;
         String letters;
-        String[][] adn = new String[dna.length][dna.length];        
+        String[][] adn = new String[n][n];        
         String[] aux;
         
-        for (int i = 0; i < adn.length; i++) {
-            if (dna[i].length() != dna.length ) { //Se valida que las posiciones tengan el mismo número de caracteres
+        for (int i = 0; i < n; i++) {
+            if (dna[i].length() != n ) { //Se valida que las posiciones tengan el mismo número de caracteres
                return false;
             }
             letters = dna[i];//Se extrae el string en cada una de las posiciones
@@ -36,7 +37,7 @@ public class DNAService {
     }
     
     
-    private static boolean checkDNA(String[][] adn){
+    public static boolean checkDNA(String[][] adn){
         int mutant =0, cadenaD=1, cadenaDI=1,cadena=1;
         
         for (int i = 0; i < adn.length; i++) {
