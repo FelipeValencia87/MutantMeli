@@ -14,10 +14,17 @@ public class DNAService {
             letters=letters.toUpperCase();
             aux = letters.split("");//Se separan las letras del string y se ingresan a un array 
             
-            if (noContainChar(aux)) { // Validando si las letras contenidas son las aceptadas
-                return false;
+            for (int j = 0; j < aux.length; j++) {// Validando si las letras contenidas son las aceptadas
+                if (aux[j].equals("A") || 
+                    aux[j].equals("T") ||
+                    aux[j].equals("G") ||
+                    aux[j].equals("C")) {
+                    
+                }else{
+                    return false;
+                }
+                
             }
-            
             for (int j = 0; j < aux.length; j++) { //Ingresando cada una de las letras en la posición
                adn[i][j]= aux[j];                
             }            
