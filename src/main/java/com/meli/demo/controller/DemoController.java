@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class DemoController {
-    
+
+
     @PostMapping("/mutant/")
     public ResponseEntity<MutantMessage> isMutant(@RequestBody DNARequest dna){
         MutantMessage message = new MutantMessage("Isn't Mutant");
