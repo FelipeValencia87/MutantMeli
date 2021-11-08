@@ -1,0 +1,6 @@
+com\meli\demo\controller\DemoController.class
+com\meli\demo\bean\DNARequest.class
+com\meli\demo\config\SwaggerConfig.class
+com\meli\demo\bean\MutantMessage.class
+com\meli\demo\DemoApplication.class
+com\meli\demo\service\DNAService.class

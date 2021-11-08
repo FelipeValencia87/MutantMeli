@@ -17,12 +17,17 @@ class DemoControllerTest {
 
     @Test
     void isMutant() {
+        MutantMessage message = new MutantMessage();
+        message.getMessage("Isn't Mutant");
+
         DNARequest dna = new DNARequest();
         dna.setDna(new String[]{"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"});
 
-        boolean isMutant= DNAService.isMutant(dna.getDna());
+        boolean mutant= DNAService.isMutant(dna.getDna());
 
-        Assertions.assertTrue(isMutant);
+        if (mutant) message.setMessage("Is Mutant");
+
+        Assertions.assertTrue(mutant);
     }
 
 }

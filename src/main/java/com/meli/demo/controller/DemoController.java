@@ -20,7 +20,9 @@ public class DemoController {
 
     @PostMapping("/mutant/")
     public ResponseEntity<MutantMessage> isMutant(@RequestBody DNARequest dna){
-        MutantMessage message = new MutantMessage("Isn't Mutant");
+        MutantMessage message = new MutantMessage();
+        message.getMessage("Isn't Mutant");
+
         boolean isMutant =DNAService.isMutant(dna.getDna());
         
         if (isMutant) {
